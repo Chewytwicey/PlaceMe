@@ -43,7 +43,7 @@ class SearchBarAndFilter extends StatelessWidget {
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                 ),
-                                hintText: "kahit saan ya . ikaw bahalaa",
+                                hintText: "Search places",
                                 hintStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,

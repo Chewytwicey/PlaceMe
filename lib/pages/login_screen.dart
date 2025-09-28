@@ -101,11 +101,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       Colors.blue,
                       30,
                     ),
-                    InkWell(
+                    // InkWell(
+                    //   onTap: () async {
+                    //     await FirebaseAuthServices().signInWithGoogle();
+                    //     Navigator.pushReplacement(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => const AppMainScreen(),
+                    //       ),
+                    //     );
+                    //   },
+                    //   child: socialIcon(
+                    //     size,
+                    //     FontAwesomeIcons.google,
+                    //     "Continue with Google",
+                    //     Colors.black,
+                    //     27,
+                    //   ),
+                    // ),
+                      InkWell(
                       onTap: () async {
+                        final navigator = Navigator.of(context);
                         await FirebaseAuthServices().signInWithGoogle();
-                        Navigator.pushReplacement(
-                          context,
+                        navigator.pushReplacement(
                           MaterialPageRoute(
                             builder: (context) => const AppMainScreen(),
                           ),
@@ -119,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         27,
                       ),
                     ),
+                    
                     socialIcon(
                       size,
                       Icons.apple,

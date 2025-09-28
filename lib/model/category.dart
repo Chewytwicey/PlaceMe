@@ -28,43 +28,39 @@ class Category {
       'image': image,
     };
   }
+
+  // Add fromMap factory for safe reading from Firestore
+  factory Category.fromMap(Map<String, dynamic> map) {
+    return Category(
+      title: map['title'] ?? 'Unknown',
+      image: map['image'] ?? 'https://via.placeholder.com/64', // fallback image
+    );
+  }
 }
 
 final List<Category> categoriesList = [
   Category(
-    title: "Category 1",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
+    title: "Apartment",
+    image: "https://cdn4.iconfinder.com/data/icons/maps-navigation-24/24/commute_home_office_city_neighborhood_house_building-512.png",
   ),
   Category(
-    title: "Category 2",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
+    title: "Boarding house",
+    image: "https://cdn2.iconfinder.com/data/icons/the-urban-hustle-and-bustle/60/office-256.png",
   ),
   Category(
-    title: "Category 3",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
+    title: "Dorm",
+    image: "https://cdn2.iconfinder.com/data/icons/city-2/64/city-08-512.png",
   ),
   Category(
-    title: "Surfing",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
+    title: "Apartment",
+    image: "https://cdn4.iconfinder.com/data/icons/maps-navigation-24/24/commute_home_office_city_neighborhood_house_building-512.png",
   ),
   Category(
-    title: "Design",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
+    title: "Boarding house",
+    image: "https://cdn2.iconfinder.com/data/icons/the-urban-hustle-and-bustle/60/office-256.png",
   ),
   Category(
-    title: "Amazing views",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
-  ),
-  Category(
-    title: "New",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
-  ),
-  Category(
-    title: "Bed&breakfasts",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
-  ),
-  Category(
-    title: "Houseboats",
-    image: "https://ph.pinterest.com/pin/1100215383978978412/",
+    title: "Dorm",
+    image: "https://cdn2.iconfinder.com/data/icons/city-2/64/city-08-512.png",
   ),
 ];

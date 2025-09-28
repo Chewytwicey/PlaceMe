@@ -1,6 +1,148 @@
-  import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// // import 'package:placeme/Components/display_total_price.dart';
+// import 'package:placeme/Components/map_with_custom_info_windows.dart';
+// import 'package:placeme/Components/search_bar_and_filter.dart';
+
+// import '../Components/display_places.dart';
+
+// class ExploreScreen extends StatefulWidget {
+//   const ExploreScreen({super.key});
+
+//   @override
+//   State<ExploreScreen> createState() => _ExploreScreenState();
+// }
+
+// class _ExploreScreenState extends State<ExploreScreen> {
+//   final CollectionReference categoryCollection = FirebaseFirestore.instance
+//       .collection("AppCategory");
+//   int selectedIndex = 0;
+  
+//   @override
+//   Widget build(BuildContext context) {
+//     Size size = MediaQuery.of(context).size;
+//     return Scaffold(
+//       backgroundColor: Color(0xFFF5F5DC),
+//       body: Stack(
+//         children: [
+//           SafeArea(
+//             bottom: false,
+//             child: Column(
+//               children: [
+//                 SearchBarAndFilter(),
+//                 listOfCategoryItems(size),
+//                 const Expanded(
+//                   child: SingleChildScrollView(
+//                     child: Column(
+//                       children: [
+//                       SizedBox(height: 15),
+//                       DisplayPlaces(),
+//                       SizedBox(height: 120),
+//                       ]
+//                     )
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//           Positioned(
+//             bottom: 110,
+//             left: 0,
+//             right: 0,
+//             child: Center(
+//               child: const MapWithCustomInfoWindows(),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   StreamBuilder<QuerySnapshot<Object?>> listOfCategoryItems(Size size) {
+//     return StreamBuilder(
+//       stream: categoryCollection.snapshots(),
+//       builder: (context, streamSnapshot) {
+//         if (streamSnapshot.hasData) {
+//           return Stack(
+//             children: [
+//               Positioned(
+//                 left: 0,
+//                 right: 0,
+//                 top: 80,
+//                 child: Divider(color: const Color.fromARGB(255, 0, 0, 0)),
+//               ),
+//               SizedBox(
+//                 height: size.height * 0.12,
+//                 child: ListView.builder(
+//                   padding: EdgeInsets.zero,
+//                   scrollDirection: Axis.horizontal,
+//                   itemCount: streamSnapshot.data!.docs.length,
+//                   physics: const BouncingScrollPhysics(),
+//                   itemBuilder: (context, index) {
+//                     return GestureDetector(
+//                       onTap: () {
+//                         setState(() {
+//                           selectedIndex = index;
+//                         });
+//                       },
+//                       child: Container(
+//                         padding: EdgeInsets.only(top: 20, right: 20, left: 20),
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(15),
+//                         ),
+//                         child: Column(
+//                           children: [
+//                             Container(
+//                               height: 32,
+//                               width: 40,
+//                               decoration: const BoxDecoration(
+//                                 shape: BoxShape.circle,
+//                               ),
+//                               child: Image.network(
+//                                 streamSnapshot.data!.docs[index]['image'],
+//                                 color: selectedIndex == index
+//                                     ? Colors.black
+//                                     : Colors.black,
+//                               ),
+//                             ),
+//                             const SizedBox(height: 5),
+//                             Text(
+//                               streamSnapshot.data!.docs[index]['title'],
+//                               style: TextStyle(
+//                                 fontSize: 13,
+//                                 color: selectedIndex == index
+//                                     ? Colors.black
+//                                     : Colors.black,
+//                               ),
+//                             ),
+//                             const SizedBox(height: 8.5),
+//                             Container(
+//                               height: 5,
+//                               width: 50,
+//                               color: selectedIndex == index
+//                                   ? Color(0xFF20B2AA)
+//                                   : Colors.transparent,
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                     );
+//                   },
+//                 ),
+//               ),
+//             ],
+//           );
+//         }
+//         return Center(child: CircularProgressIndicator());
+//       },
+//     );
+//   }
+// }
+
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:placeme/Components/display_total_price.dart';
+// import 'package:placeme/Components/display_total_price.dart';
+import 'package:placeme/Components/map_with_custom_info_windows.dart';
 import 'package:placeme/Components/search_bar_and_filter.dart';
 
 import '../Components/display_places.dart';
@@ -16,113 +158,124 @@ class _ExploreScreenState extends State<ExploreScreen> {
   final CollectionReference categoryCollection = FirebaseFirestore.instance
       .collection("AppCategory");
   int selectedIndex = 0;
+  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xFF20B2AA),
-      body: SafeArea(
-        bottom: false,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SearchBarAndFilter(),
-              listOfCategoryItems(size),
-              const DisplayTotalPrice(),
-              const DisplayPlaces(),
-            ],
+      backgroundColor: Color(0xFFF5F5DC),
+      body: Stack(
+        children: [
+          SafeArea(
+            bottom: false,
+            child: Column(
+              children: [
+                SearchBarAndFilter(),
+                listOfCategoryItems(size),
+                const Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                      SizedBox(height: 15),
+                      DisplayPlaces(),
+                      SizedBox(height: 120),
+                      ]
+                    )
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+          Positioned(
+            bottom: 110,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: const MapWithCustomInfoWindows(),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   StreamBuilder<QuerySnapshot<Object?>> listOfCategoryItems(Size size) {
     return StreamBuilder(
-            stream: categoryCollection.snapshots(),
-            builder: (context, streamSnapshot) {
-              if (streamSnapshot.hasData) {
-                return Stack(
-                  children: [
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      top: 80,
-                      child: Divider(color: Colors.black),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.12,
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: streamSnapshot.data!.docs.length,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedIndex = index;
-                              });
-                            },
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                top: 20,
-                                right: 20,
-                                left: 20,
+      stream: categoryCollection.snapshots(),
+      builder: (context, streamSnapshot) {
+        if (streamSnapshot.hasData) {
+          return Stack(
+            children: [
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 80,
+                child: Divider(color: const Color.fromARGB(255, 0, 0, 0)),
+              ),
+              SizedBox(
+                height: size.height * 0.12,
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: streamSnapshot.data!.docs.length,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(top: 20, right: 20, left: 20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 32,
+                              width: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
                               ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 32,
-                                    width: 40,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      streamSnapshot
-                                          .data!
-                                          .docs[index]['image'],
-                                      color:selectedIndex ==
-                                              index
-                                          ? Colors.black
-                                          : Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    streamSnapshot.data!.docs[index]['title'],
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      color:selectedIndex ==
-                                              index
-                                          ? Colors.black
-                                          : Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Container(
-                                    height: 3,
-                                    width: 50,
-                                    color:selectedIndex ==
-                                            index
-                                        ? Color(0xFFF5F5DC)
-                                        : Colors.transparent,
-                                  ),
-                                ],
+                              child: Image.network(
+                                streamSnapshot.data!.docs[index]['image'],
+                                color: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.black,
                               ),
                             ),
-                          );
-                        },
+                            const SizedBox(height: 5),
+                            Text(
+                              streamSnapshot.data!.docs[index]['title'],
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 8.5),
+                            Container(
+                              height: 5,
+                              width: 50,
+                              color: selectedIndex == index
+                                  ? Color(0xFF20B2AA)
+                                  : Colors.transparent,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              }
-              return Center(child: CircularProgressIndicator());
-            },
+                    );
+                  },
+                ),
+              ),
+            ],
           );
+        }
+        return Center(child: CircularProgressIndicator());
+      },
+    );
   }
 }
