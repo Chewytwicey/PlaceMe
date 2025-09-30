@@ -805,6 +805,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:placeme/Components/map_with_custom_info_windows.dart';
 import '../Components/display_places.dart';
+import 'package:placeme/model/filter_options.dart';
 
 class SearchBarAndFilter extends StatelessWidget {
   final TextEditingController searchController;
@@ -1091,30 +1092,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
         }
         return const Center(child: CircularProgressIndicator());
       },
-    );
-  }
-}
-
-class FilterOptions {
-  RangeValues priceRange;
-  bool showOnlyActive;
-  Set<String> selectedLocations;
-
-  FilterOptions({
-    this.priceRange = const RangeValues(0, 10000),
-    this.showOnlyActive = false,
-    this.selectedLocations = const <String>{},
-  });
-
-  FilterOptions copyWith({
-    RangeValues? priceRange,
-    bool? showOnlyActive,
-    Set<String>? selectedLocations,
-  }) {
-    return FilterOptions(
-      priceRange: priceRange ?? this.priceRange,
-      showOnlyActive: showOnlyActive ?? this.showOnlyActive,
-      selectedLocations: selectedLocations ?? this.selectedLocations,
     );
   }
 }
