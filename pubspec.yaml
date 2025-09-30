@@ -20,6 +20,7 @@ dependencies:
   custom_info_window: ^1.0.1
   provider: ^6.1.1
   logging: ^1.2.0
+  google_fonts: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +40,10 @@ flutter:
     - assets/images/marker.png
     - assets/images/default_avatar.png
     - assets/images/book_cover.png
+    - assets/images/applogo1.png
+    - assets/images/googlelog.png
+    - assets/images/facebooklog.png
+    - assets/images/bg.png
 
 flutter_native_splash:
   color: "#FFFFFF"

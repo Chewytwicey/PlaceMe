@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class FavoriteProvider extends ChangeNotifier {
   List<String> _favoritesIds = [];
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  bool _isLoading = false;
+  final bool _isLoading = false;
   
   List<String> get favorites => _favoritesIds;
   bool get isLoading => _isLoading;

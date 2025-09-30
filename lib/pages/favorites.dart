@@ -113,7 +113,7 @@ class Favorites extends StatelessWidget {
                                         Text(
                                           'Owner: ${favoriteItems['vendor']}',
                                           style: TextStyle(
-                                            color: Color(0xFFF5F5DC).withOpacity(0.8),
+                                            color: Color(0xFFF5F5DC),
                                             fontSize: 10,
                                             fontWeight: FontWeight.w500,
                                           ),

@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:placeme/Provider/favorite_provider.dart';
-import 'package:placeme/pages/login_screen.dart';
 import 'package:placeme/pages/main_screen.dart';
+import 'package:placeme/pages1/authentication_page.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return const AppMainScreen();
             } else {
-              return const LoginScreen();
+              return const AuthenticationPage();
             }
           },
         ),
