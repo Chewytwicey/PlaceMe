@@ -800,10 +800,10 @@
 // }
 
 
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:placeme/Components/map_with_custom_info_windows.dart';
+import 'package:placeme/pages/results_page.dart';
 import '../Components/display_places.dart';
 import 'package:placeme/model/filter_options.dart';
 
@@ -938,33 +938,28 @@ class _ExploreScreenState extends State<ExploreScreen> {
         initialFilters: _filters,
         onApplyFilters: (newFilters) {
           if (newFilters.selectedLocations.isEmpty) {
-            showDialog(
-              context: context,
-              barrierDismissible: true,
-              builder: (dialogContext) => AlertDialog(
-                backgroundColor: const Color(0xFF20B2AA),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                content: const Text(
-                  'Please select at least one location',
-                  style: TextStyle(color: Colors.white),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(dialogContext),
-                    child: const Text('OK', style: TextStyle(color: Colors.white)),
-                  ),
-                ],
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Please select at least one location'),
+                backgroundColor: Color(0xFF20B2AA),
               ),
             );
             return;
           }
-
+          
+          // Close the bottom sheet
           Navigator.pop(modalContext);
-          setState(() {
-            _filters = newFilters;
-          });
+          
+          // Navigate to ResultsPage
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => ResultsPage(
+                filters: newFilters,
+                searchQuery: _searchQuery,
+              ),
+            ),
+          );
         },
       ),
     );
@@ -997,7 +992,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       const SizedBox(height: 15),
                       DisplayPlaces(
                         searchQuery: _searchQuery,
-                        filters: _filters, 
+                        filters: FilterOptions(  // Default filters - shows ALL places on home screen
+                          priceRange: const RangeValues(0, 10000),
+                          showOnlyActive: false,
+                          selectedLocations: {},  // Empty = show all locations
+                        ), 
                       ),
                       const SizedBox(height: 120),
                     ]),
@@ -1267,9 +1266,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     );
                     return;
                   }
-
                   widget.onApplyFilters(filters);
-                  Navigator.pop(context);
                 },
                 child: const Text(
                   'Apply Filters',
@@ -1300,4 +1297,3 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     );
   }
 }
-

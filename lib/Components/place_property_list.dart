@@ -8,10 +8,10 @@ Widget placePropertyList(Size size, String iconUrl, String title, String descrip
       children: [
         // Icon container
         Container(
-          width: 40,
-          height: 40,
+          width: 50,
+          height: 50,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(0),
             color: Colors.grey[100],
           ),
           child: Icon(

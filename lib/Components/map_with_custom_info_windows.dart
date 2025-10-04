@@ -105,24 +105,24 @@ class _MapWithCustomInfoWindowsState extends State<MapWithCustomInfoWindows> {
                                           vertical: 5,
                                           horizontal: 12,
                                         ),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(30),
-                                        ),
-                                        child: const Text(
-                                          "Guest Favorite",
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.green,
-                                          ),
-                                        ),
+                                        // decoration: BoxDecoration(
+                                        //   color: Colors.white,
+                                        //   borderRadius: BorderRadius.circular(30),
+                                        // ),
+                                        // child: const Text(
+                                        //   // "Guest Favorite",
+                                        //   style: TextStyle(
+                                        //     fontSize: 12,
+                                        //     fontWeight: FontWeight.bold,
+                                        //     color: Colors.green,
+                                        //   ),
+                                        // ),
                                       ),
                                       const Spacer(),
-                                      const MyIconButton(
-                                        icon: Icons.favorite_border,
-                                        radius: 15,
-                                      ),
+                                      // const MyIconButton(
+                                      //   icon: Icons.favorite_border,
+                                      //   radius: 15,
+                                      // ),
                                       const SizedBox(width: 8),
                                       InkWell(
                                         onTap: () {
